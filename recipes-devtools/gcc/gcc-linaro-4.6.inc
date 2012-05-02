@@ -1,6 +1,6 @@
 require recipes-devtools/gcc/gcc-common.inc
 
-PR = "r0"
+PR = "r1"
 RELEASE = "2012.04"
 BINV = "4.6.4"
 
@@ -17,6 +17,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
 		   file://COPYING.RUNTIME;md5=fe60d87048567d4fe8c8a0ed2448bcc8"
 
 SRC_URI = "https://launchpad.net/gcc-linaro/4.6/4.6-${RELEASE}/+download/gcc-${PV}-${RELEASE}.tar.bz2 \
+	   file://64bithack.patch \
 	   file://optional_libstdc.patch \
 	   file://use-defaults.h-and-t-oe-in-B.patch \
 	  "
