@@ -8,7 +8,6 @@ fi
 
 # clone repositories
 
-git clone git://git.linaro.org/openembedded/meta-linaro.git
 git clone git://git.openembedded.org/meta-openembedded
 git clone git://git.openembedded.org/openembedded-core
 cd openembedded-core/
@@ -22,8 +21,9 @@ git clone git://git.openembedded.org/bitbake
 echo "BBLAYERS = '`realpath $PWD/../meta-openembedded/meta-oe`'" >>conf/bblayers.conf 
 echo "BBLAYERS += '`realpath $PWD/../meta-openembedded/meta-webserver`'" >>conf/bblayers.conf 
 echo "BBLAYERS += '`realpath $PWD/../meta-openembedded/toolchain-layer`'" >>conf/bblayers.conf 
-echo "BBLAYERS += '`realpath $PWD/../meta-aarch64`'" >>conf/bblayers.conf
-echo "BBLAYERS += '`realpath $PWD/../meta-linaro`'" >>conf/bblayers.conf
+echo "BBLAYERS += '`realpath $PWD/../meta-linaro/meta-aarch64`'" >>conf/bblayers.conf
+echo "BBLAYERS += '`realpath $PWD/../meta-linaro/meta-linaro`'" >>conf/bblayers.conf
+echo "BBLAYERS += '`realpath $PWD/../meta-linaro/meta-linaro-toolchain`'" >>conf/bblayers.conf
 echo "BBLAYERS += '`realpath $PWD/../openembedded-core/meta`'" >>conf/bblayers.conf 
 
 # Add some Linaro related options
@@ -31,7 +31,6 @@ echo "BBLAYERS += '`realpath $PWD/../openembedded-core/meta`'" >>conf/bblayers.c
 echo 'SCONF_VERSION = "1"'					 			>>conf/site.conf
 echo 'IMAGE_ROOTFS_ALIGNMENT = "2048"' 					>>conf/site.conf
 echo 'INHERIT += "rm_work"' 							>>conf/site.conf
-echo 'BB_GENERATE_MIRROR_TARBALLS = "True"' 			>>conf/site.conf
 echo 'MACHINE = "genericarmv8"'							>>conf/site.conf
 echo 'BB_NUMBER_THREADS = "8"'							>>conf/site.conf
 echo 'PARALLEL_MAKE = "-j8"'							>>conf/site.conf
@@ -53,19 +52,3 @@ echo 'DISTRO_FEATURES = "alsa argp ext2 largefile usbgadget usbhost xattr nfs ze
 # get rid of MACHINE setting from local.conf
 
 sed -i -e "s/^MACHINE.*//g" conf/local.conf
-
-prepare_for_publish () {
-    # some stuff to be run after build
-    pushd downloads
-    rm *.done
-    rm -rf git2 svn cvs bzr # we publish files not SCM dirs
-    popd
-
-    pushd sstate-cache/
-    rm `find . -type l`
-    rm *.done
-    mv */* .
-    mv */*/* .
-    rm -rf ?? Ubuntu-*
-    popd
-}
