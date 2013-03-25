@@ -43,7 +43,7 @@ def elt_get_libc_version(d):
 	if not syspath:
 		return 'UNKNOWN'
 
-	libpath = syspath + '/libc/lib/${ELT_TARGET_SYS}/'
+	libpath = syspath + bb.data.expand('/libc/lib/${ELT_TARGET_SYS}/', d)
 
 	if os.path.exists(libpath):
 		for file in os.listdir(libpath):
