@@ -15,6 +15,7 @@ SRC_URI = "http://cbuild.validation.linaro.org/snapshots/gcc-${PV}-${RELEASE}-01
 	   file://optional_libstdc.patch \
 	   file://use-defaults.h-and-t-oe-in-B.patch \
 	   file://fix-g++-sysroot.patch \
+           file://disable-texinfo-5.patch \
 	  "
 
 SRC_URI[md5sum] = "4c8d749eb6358a7b6a3ce617e96eb5a9"
