@@ -1,8 +1,8 @@
 #FILESPATHPKG =. "binutils-git:"
-SRCREV = "0ba0fddb32272c8e561b9c12688c639a1218c864"
+SRCREV = "d2e65a7d1c3d7ecda9f6723035343b972a84e9cd"
 LICENSE = "GPLv3"
 
-PV = "2.23.51.20130109+gitr${SRCPV}"
+PV = "2.23.52.20130525+gitr${SRCPV}"
 PR = "r0"
 
 S = "${WORKDIR}/git"
