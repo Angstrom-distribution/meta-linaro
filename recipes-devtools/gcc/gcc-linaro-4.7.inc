@@ -1,15 +1,14 @@
 require recipes-devtools/gcc/gcc-4.7.inc
 require gcc-linaro-common-4.7.inc
 
-PR = "r9"
-RELEASE = "2013.02"
+MMYY = "13.02"
+RELEASE = "20${MMYY}"
+PR = "r${RELEASE}"
 BINV = "4.7.3"
 
 FILESPATH = "${@base_set_filespath([ '${FILE_DIRNAME}/gcc-${PV}' ], d)}"
 
-#SRC_URI = "https://launchpad.net/gcc-linaro/4.7/4.7-${RELEASE}/+download/gcc-${PV}-${RELEASE}.tar.bz2 
-
-SRC_URI = "http://cbuild.validation.linaro.org/snapshots/gcc-${PV}-${RELEASE}-01.tar.bz2 \
+SRC_URI = "http://releases.linaro.org/${MMYY}/components/toolchain/gcc-linaro/${BASEPV}/gcc-${PV}-${RELEASE}-01.tar.bz2 \
 	   file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch \
 	   file://64bithack.patch \
 	   file://optional_libstdc.patch \
